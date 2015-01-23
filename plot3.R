@@ -15,9 +15,11 @@ baltimore.data<-filter(NEI,fips == "24510")
 #get our subset and sum by year
 baltimore.year.data<-summarise(group_by(select(baltimore.data,Emissions,type,year),year,type),emissions.total=sum(Emissions))
 
-png(filename="plot3.png",width=480,height=480,bg="transparent")
+png(filename="plot3.png",width=780,height=480,bg="transparent")
 #plot it out
-qplot(year,baltimore.year.data$emissions.total, data=baltimore.year.data,color=baltimore.year.data$type, geom=c("point","smooth"))
+g<-ggplot(baltimore.year.data,aes(year,emissions.total))
+p<-g+geom_point(aes(color=type))+facet_grid(.~type) + geom_smooth(method="lm")
+print(p)
 dev.off()
 
 # Using the plot, non-road, nonpoint, on-road all have seen decreases. Point is the only one that's
