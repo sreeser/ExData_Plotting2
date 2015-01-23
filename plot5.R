@@ -24,4 +24,4 @@ g<-qplot(year,emissions.total, data=nei.vehicle.year.data, geom=c("point","smoot
 print(g)
 dev.off()
 
-#generally they've gone down with a big drop between 2005 and 2008
+#general decline but had a large drop the few years after 1999
